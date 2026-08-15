@@ -11,7 +11,8 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "websocket": "^1.0.35"
+    "websocket": "^1.0.35",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/websocket": "^1.0.10"
