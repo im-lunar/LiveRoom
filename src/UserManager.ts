@@ -1,4 +1,4 @@
-import { connection } from "websocket";
+import type { connection } from "websocket";
 import type { OutgoingMessage } from "./messages/outgoingMessages.js";
 
 interface User {

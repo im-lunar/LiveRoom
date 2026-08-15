@@ -1,4 +1,9 @@
-import {connection, server as WebSocketServer} from "websocket";
+import websocket from "websocket";
+import type { connection as Connection } from "websocket";
+const {
+    connection,
+    server: WebSocketServer
+} = websocket;
 import http from 'http';
 import { SupportedMessage, type IncomingMessage } from "./messages/incomingMessages.js";
 import { UserManager } from "./UserManager.js";
@@ -55,7 +60,7 @@ wsServer.on('request', function(request: any) {
     });
 });
 
-function messageHandler(ws: connection, message: IncomingMessage) {
+function messageHandler(ws: Connection, message: IncomingMessage) {
     if (message.type === SupportedMessage.JoinRoom) {
         const payload = message.payload;
         userManager.addUser(payload.name, payload.userId, payload.roomId, ws);
@@ -83,7 +88,7 @@ function messageHandler(ws: connection, message: IncomingMessage) {
                 roomId: payload.roomId,
                 message: payload.message,
                 name: user.name,
-                upvotes: 0,
+                upvotes: chat.upvotes.length,
             }
         }
         userManager.broadcast(payload.roomId, payload.userId, outgoingPayload);
